@@ -16,6 +16,9 @@
 2. Database  inser into php my admin
 3. Run comments in - php artisan serve
 
+   **Note: Stripe Payment Checkout
+   1.  Card Details - 4242 4242 4242 4242  , 12/23 ,123
+   2.  Give  Malaysia Country to  Test
 --------------***--------------
 
 
