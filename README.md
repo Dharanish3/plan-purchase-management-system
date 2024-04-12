@@ -19,7 +19,7 @@ Added sql database in this project - plan.sql
    **Note: Stripe Payment Checkout
    1.  Card Details - 4242 4242 4242 4242  , 12/23 ,123
    2.  Give  Malaysia Country to  Test
-   3.  
+      
 --------------***--------------
 
 
