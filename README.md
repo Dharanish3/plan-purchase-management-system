@@ -12,7 +12,7 @@
 # Added sql database in this project - plan.sql
 
 # Set Up a Project
-1. **composer install**
+1. composer install
 2. Database  inser into php my admin
 3. Run comments in - php artisan serve
 
