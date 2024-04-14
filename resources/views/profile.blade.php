@@ -17,11 +17,22 @@
 
 
                         </header>
+                        @if($user)
                         <ul class="list-group">
                             <li class="list-group-item">{{ $user->name }}</li>
                             <li class="list-group-item">{{ $user->email }}</li>
-                   
+                            @if($orders && count($orders) > 0)
+                            <ul class="list-group">
+                                <li class="list-group-item"><b>Address :</b> {{ $orders[0]->address }}</li>
+                                <li class="list-group-item"><b>Country :</b> {{ $orders[0]->country }}</li>
+                                <li class="list-group-item"><b>City :</b> {{ $orders[0]->city }}</li>
+                                <li class="list-group-item"><b>Code :</b> {{ $orders[0]->code }}</li>
+                            </ul>
+                            @endif
+
+
                         </ul>
+                        @endif
 
                     </section>
 

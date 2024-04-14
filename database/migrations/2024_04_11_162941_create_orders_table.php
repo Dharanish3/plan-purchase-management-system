@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('plan_id');
-          
+            $table->string('payment_id');
             $table->string('address');
             $table->string('city');
             $table->string('country');

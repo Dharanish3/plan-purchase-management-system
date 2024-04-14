@@ -8,7 +8,7 @@
                 <tr>
                     <th scope="col">S.No</th>
                     <th scope="col">Transaction Date</th>
-                    <th scope="col">Payment Refreence</th>
+                    <th scope="col">Payment Refrence</th>
                     <th scope="col">Plan Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Payment Status</th>
@@ -19,7 +19,7 @@
                 <tr>
                     <th scope="row">{{ $index + 1 }}</th>
                     <td>{{ $order->created_at->format('d-M-Y H:i:s') }}</td>
-                    <td>{{$order->address}}</td>
+                    <td>{{$order->payment_id}}</td>
                     <td>
                         @php
                         

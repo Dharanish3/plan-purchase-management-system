@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
+use Stripe\Event;
 use Stripe\Checkout\Session;
 use App\Models\Plan;
 use App\Models\Order;
@@ -34,15 +35,16 @@ class OrderController extends Controller
         $request->validate([
             'plan_id' => 'required|exists:plans,id',
             'user_id' => 'required|exists:users,id',
-          
+            'payment_id' => 'string',
             'address' => 'required|string',
             'city' => 'required|string',
             'country' => 'required|string',
             'code' => 'required|string',
         ]);
 
-        $order = Order::create($request->all());
+
         $plan = Plan::findOrFail($request->plan_id);
+        $user =  $user = Auth::user();
         Stripe::setApiKey(env('SECRET_KEY'));
 
         $session = Session::create([
@@ -58,11 +60,22 @@ class OrderController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
+           'customer_email'=> $user->email,
+          
             'success_url' => route('success'),
             'cancel_url' => route('cancel'),
+
         ]);
 
-        return redirect($session->url);
+        if ($session) {
+
+            $order = new Order();
+            $order->fill($request->all());
+            $order->payment_id = $session->id;
+            $order->save();
+
+            return redirect($session->url);
+        }
     }
 
 
@@ -72,6 +85,9 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $user = Auth::user();
-        return view('profile', ['orders' => $orders, 'user' => $user]);
+        return view('profile',  [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
     }
 }
